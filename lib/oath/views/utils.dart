@@ -32,7 +32,7 @@ import '../../exception/cancellation_exception.dart';
 import '../../widgets/utf8_utils.dart';
 import '../keys.dart';
 import '../models.dart';
-import 'add_account_dialog.dart';
+import '../state.dart';
 import 'add_account_page.dart';
 import 'add_multi_account_page.dart';
 
@@ -172,9 +172,11 @@ Future<void> addOathAccount(BuildContext context, WidgetRef ref,
       await AndroidQrScanner.showAccountManualEntryDialog(withContext, l10n);
     }
   } else {
+    final credentials = ref.read(credentialsProvider);
     await showBlurDialog(
       context: context,
-      builder: (context) => AddAccountDialog(devicePath, oathState),
+      builder: (context) =>
+          OathAddAccountPage(devicePath, oathState, credentials: credentials),
     );
   }
 }
