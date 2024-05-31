@@ -17,6 +17,10 @@ jobs:
         with:
           path: 'app'
 
+      - uses: ashutoshgngwr/validate-fastlane-supply-metadata@v2
+        with:
+          fastlaneDir: ./fastlane/metadata/android
+
       - name: Read variables from repo
         run: cat .github/workflows/env >> $GITHUB_ENV
         working-directory: ./app
